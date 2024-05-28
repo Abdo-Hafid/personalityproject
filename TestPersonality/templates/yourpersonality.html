@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Personality Test{% endblock %}
+{% block sidebar %}
+<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+    <div class="text-center">
+        
+        <h1 id="colorlib-logo"><a href="index.html">{{ candidat.username }}<br>Merci de laisser votre avis .</a></h1>
+
+		<div class="author-img" style=""></div>
+    </div>
+    <nav id="colorlib-main-menu" role="navigation" class="navbar">
+        <div >
+            <ul>
+                <li class="active"><a href="#" data-nav-section="home">votre personnalité : {{ principal_personality.name }}</a></li>
+                <li><a href="{% url 'TestPersonality:questionnaire' candidat.id  %}">Découvrez à nouveau</a></li>
+				<li><a href="{% url 'TestPersonality:register_student' %}">Espace Membres</a></li>
+				<li><a href="{% url 'TestPersonality:test'%}">Sortie</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="colorlib-footer">
+        <script>document.write(new Date().getFullYear());</script>
+    </div>
+</aside>
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="font-weight-bold">Personnalité principale:</h2>
+                    <h3 class="animated-text text-primary" style="box-shadow: 0 0 5px #fff;">{{ principal_personality.name }}</h3>
+                    <p>{{ principal_personality.description }}</p>
+
+                    <h2 class="font-weight-bold mt-4">Personnalités secondaires:</h2>
+                    {% for personality in secondary_personalities %}
+                    <h3 class="animated-text text-secondary" style="box-shadow: 0 0 5px #555;">- {{ personality.name }}</h3>
+                    <p>{{ personality.description }}</p>
+                    {% endfor %}
+
+                    <form action="{% url 'TestPersonality:submit_opinion' %}" method="post" class="mt-4">
+                        {% csrf_token %}
+                        <input type="hidden" name="candidat_id" value="{{ candidat_id }}">
+                        
+                        <div class="form-group">
+                            <input type="hidden" name="principal_personality_name" value="{{ principal_personality.name }}">
+                            <input type="hidden" name="type_personality_principal" value="Personnalité principale">
+                            <label> {{ principal_personality.name }} - J'aime</label>
+                            <input type="radio" name="likes_principal" value="True">
+                            <label>Je n'aime pas</label>
+                            <input type="radio" name="dislikes_principal" value="True">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comments_principal">Commentaire</label>
+                            <textarea name="comments_principal" id="comments_principal" class="form-control" rows="3"></textarea>
+                        </div>
+                        
+                        {% for personality in secondary_personalities %}
+                        <div class="form-group">
+                            <input type="hidden" name="secondary_personality_name[]" value="{{ personality.name }}">
+                            <input type="hidden" name="type_personality_secondary[]" value="Personnalité secondaire">
+                            <label>{{ personality.name }} - J'aime</label>
+                            <input type="radio" name="likes_{{ personality.name }}" value="True">
+                            <label>Je n'aime pas</label>
+                            <input type="radio" name="dislikes_{{ personality.name }}" value="True">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comments_{{ personality.name }}">Commentaire</label>
+                            <textarea name="comments_{{ personality.name }}" id="comments_{{ personality.name }}" class="form-control" rows="3"></textarea>
+                        </div>
+                        {% endfor %}
+                        
+                        <button class="btn btn-primary btn-grad" type="submit">Terminer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

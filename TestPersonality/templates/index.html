@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home - la personnalité téléphonique{% endblock %}
+{% block sidebar %}
+<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+    <div class="text-center">
+        <div class="author-img" style="background-image: url('{% static 'images/mr.jpg' %}');"></div>
+        <h1 id="colorlib-logo"><a href="index.html">Professeur <br> Redouane El Majdouli.</a></h1>
+        <span class="position" style="padding:10px;">Spécialiste en communication numérique et analyse comportementale </span>
+    </div>
+    <nav id="colorlib-main-menu" role="navigation" class="navbar">
+        <div id="navbar" class="collapse">
+            <ul>
+                <li class="active"><a href="#" data-nav-section="home">Home</a></li>
+                <li><a href="#" data-nav-section="about">About</a></li>
+                <li><a href="#" data-nav-section="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="colorlib-footer">
+        Faculté des Lettres et Sciences Humaines Agadir. <br><br>
+        <script>document.write(new Date().getFullYear());</script>
+        <a href="{% url 'TestPersonality:likes_by_age' %}">Likes by Age</a>
+    </div>
+</aside>
+{% endblock %}
+
+{% block content %}
+<section id="colorlib-hero" class="js-fullheight" data-section="home">
+    <div class="flexslider js-fullheight">
+        <ul class="slides">
+            <li style="background-image: url('{% static 'images/img_bg_1.jpg' %}');">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
+                            <div class="slider-text-inner js-fullheight">
+                                <div class="desc">
+                                    <h1>Test de la personnalité téléphonique <br></h1>
+                                    <h2 style="padding-right:50px;">Obtenez une description de qui vous êtes en téléphone et pourquoi vous faites les choses comme vous le faites.</h2>
+                                    <p><a href="{% url 'TestPersonality:register_candidate' %}" class="btn btn-primary btn-learn">Faites le test <i class="icon-download4"></i></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="colorlib-about" data-section="about">
+    <div class="colorlib-narrow-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="col-md-12">
+                        <div class="about-desc">
+                            <span class="heading-meta">About Us</span>
+                            <h2 class="colorlib-heading">About</h2>
+                            <p><strong>Utilisez-vous un téléphone portable ?</strong></p>
+                            <p>Avez-vous déjà pris un moment pour réfléchir à ce que votre utilisation révèle sur vous ? Chacun d'entre nous possède un profil d'usage unique, une empreinte numérique qui nous distingue. Êtes-vous prêts à plonger dans les profondeurs de votre personnalité téléphonique ?</p>
+                            <p>Découvrez-le grâce au test innovant développé par le Professeur Redouane El Majdouli. Une expérience fascinante vous attend, où vous explorerez non seulement les aspects les plus intrigants de vos habitudes téléphoniques mais vous apprendrez également à connaître vos forces et vos faiblesses. Ne laissez pas passer cette opportunité de vous découvrir sous un jour nouveau. Embarquez dans cette aventure captivante avec nous !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="colorlib-contact" data-section="contact">
+    <div class="colorlib-narrow-content">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                <h2 class="colorlib-heading">Contact</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="colorlib-icon">
+                        <i class="icon-globe-outline"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        <p><a href="mailto:Redouane@Elmajdouli.com">Redouane@Elmajdouli.com</a></p>
+                    </div>
+                </div>
+                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="colorlib-icon">
+                        <i class="icon-map"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        <p>Faculté des Lettres et Sciences Humaines Agadir.</p>
+                    </div>
+                </div>
+                <div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
+                    <div class="colorlib-icon">
+                        <i class="icon-phone"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        +212
+                        <span class="heading-meta"><a href="{% url 'TestPersonality:register_student' %}">Espace Membres</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-md-push-1">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Send Message">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
